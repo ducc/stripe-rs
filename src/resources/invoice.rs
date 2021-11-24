@@ -12,8 +12,6 @@ use crate::resources::{
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "Invoice".
-///
-/// For more details see [https://stripe.com/docs/api/invoices/object](https://stripe.com/docs/api/invoices/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Invoice {
     /// Unique identifier for the object.

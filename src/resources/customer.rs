@@ -14,8 +14,6 @@ use crate::resources::{
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "Customer".
-///
-/// For more details see [https://stripe.com/docs/api/customers/object](https://stripe.com/docs/api/customers/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Customer {
     /// Unique identifier for the object.

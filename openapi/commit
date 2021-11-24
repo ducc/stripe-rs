@@ -6,6 +6,7 @@
 
 # Resources
 ./openapi/add account
+./openapi/add account_link
 ./openapi/add alipay_account
 ./openapi/add application
 ./openapi/add application_fee

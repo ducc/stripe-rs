@@ -8,8 +8,6 @@ use crate::params::{Expand, List, Metadata, Object, RangeQuery, Timestamp};
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "TaxRate".
-///
-/// For more details see [https://stripe.com/docs/api/tax_rates/object](https://stripe.com/docs/api/tax_rates/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct TaxRate {
     /// Unique identifier for the object.

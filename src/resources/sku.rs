@@ -9,8 +9,6 @@ use crate::resources::{CreateProduct, Currency, PackageDimensions, Product};
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "SKU".
-///
-/// For more details see [https://stripe.com/docs/api/skus/object](https://stripe.com/docs/api/skus/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Sku {
     /// Unique identifier for the object.

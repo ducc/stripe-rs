@@ -9,8 +9,6 @@ use crate::resources::{BalanceTransaction, BankAccount, Card, Currency};
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "Payout".
-///
-/// For more details see [https://stripe.com/docs/api/payouts/object](https://stripe.com/docs/api/payouts/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Payout {
     /// Unique identifier for the object.

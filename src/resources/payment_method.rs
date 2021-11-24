@@ -9,8 +9,6 @@ use crate::resources::{Address, BillingDetails, Customer, PaymentMethodDetails};
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "PaymentMethod".
-///
-/// For more details see [https://stripe.com/docs/api/payment_methods/object](https://stripe.com/docs/api/payment_methods/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct PaymentMethod {
     /// Unique identifier for the object.

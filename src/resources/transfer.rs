@@ -9,8 +9,6 @@ use crate::resources::{Account, BalanceTransaction, Charge, Currency, TransferRe
 use serde_derive::{Deserialize, Serialize};
 
 /// The resource representing a Stripe "Transfer".
-///
-/// For more details see [https://stripe.com/docs/api/transfers/object](https://stripe.com/docs/api/transfers/object).
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Transfer {
     /// Unique identifier for the object.
