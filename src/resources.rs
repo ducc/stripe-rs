@@ -164,6 +164,8 @@ pub use self::tax_rate::*;
 #[cfg(feature = "connect")]
 mod account;
 #[cfg(feature = "connect")]
+mod account_link;
+#[cfg(feature = "connect")]
 mod application;
 #[cfg(feature = "connect")]
 mod application_fee;
@@ -183,6 +185,8 @@ mod transfer;
 mod transfer_reversal;
 #[cfg(feature = "connect")]
 pub use self::account::*;
+#[cfg(feature = "connect")]
+pub use self::account_link::*;
 #[cfg(feature = "connect")]
 pub use self::application::*;
 #[cfg(feature = "connect")]
