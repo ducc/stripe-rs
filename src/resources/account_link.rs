@@ -120,6 +120,7 @@ impl std::fmt::Display for AccountLinkCollect {
 pub enum AccountLinkType {
     CustomAccountUpdate,
     CustomAccountVerification,
+    AccountOnboarding,
 }
 
 impl AccountLinkType {
@@ -127,6 +128,7 @@ impl AccountLinkType {
         match self {
             AccountLinkType::CustomAccountUpdate => "custom_account_update",
             AccountLinkType::CustomAccountVerification => "custom_account_verification",
+            AccountLinkType::AccountOnboarding => "account_onboarding",
         }
     }
 }
