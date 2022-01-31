@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use crate::config::{Client, Response};
 use crate::ids::CustomerId;
 use crate::resources::{
@@ -60,7 +62,8 @@ pub struct CreateCheckoutSession<'a> {
     pub mode: Option<CheckoutSessionMode>,
 
     // A subset of parameters to be passed to PaymentIntent creation for Checkout Sessions in payment mode
-    // TODO: payment_intent_data
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub payment_intent_data: Option<CheckoutPaymentIntentData<'a>>,
 
     // A subset of parameters to be passed to SetupIntent creation for Checkout Sessions in setup mode.
     // TODO: setup_intent_data
@@ -100,6 +103,71 @@ pub struct CheckoutSessionLineItem<'a> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub images: Option<Vec<String>>,
     // TODO: remaining optional fields
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct CheckoutPaymentIntentData<'a> {
+    // The amount of the application fee (if any) that will be requested to be applied to the payment 
+    // and transferred to the application owner’s Stripe account. The amount of the application fee 
+    // collected will be capped at the total payment amount. For more information, see the 
+    // PaymentIntents use case for connected accounts.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub application_fee_amount: Option<u64>,
+
+    // An arbitrary string attached to the object. Often useful for displaying to users.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<&'a str>,
+
+    // Set of key-value pairs that you can attach to an object. This can be useful for storing 
+    // additional information about the object in a structured format. Individual keys can be 
+    // unset by posting an empty value to them. All keys can be unset by posting an empty value to metadata.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metadata: Option<HashMap<String, String>>,
+
+    // The Stripe account ID for which these funds are intended. For details, see the PaymentIntents use 
+    #[serde(skip_serializing_if = "Option::is_none")]
+    // case for connected accounts.
+    pub on_behalf_of: Option<&'a str>,
+
+    // Email address that the receipt for the resulting payment will be sent to. If receipt_email is 
+    // specified for a payment in live mode, a receipt will be sent regardless of your email settings.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub receipt_email: Option<&'a str>,
+
+    // TODO: setup_future_usage
+
+    // Extra information about the payment. This will appear on your customer’s statement when this payment 
+    // succeeds in creating a charge.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub statement_descriptor: Option<&'a str>,
+
+    // Provides information about the charge that customers see on their statements. Concatenated with the 
+    // prefix (shortened descriptor) or statement descriptor that’s set on the account to form the complete 
+    // statement descriptor. Maximum 22 characters for the concatenated descriptor.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub statement_descriptor_suffix: Option<&'a str>,
+
+    // The parameters used to automatically create a Transfer when the payment succeeds. 
+    // For more information, see the PaymentIntents use case for connected accounts.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub transfer_data: Option<CheckoutTransferData<'a>>,
+
+    // A string that identifies the resulting payment as part of a group. See the PaymentIntents use case 
+    // for connected accounts for details.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub transfer_group: Option<&'a str>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct CheckoutTransferData<'a> {
+    // If specified, successful charges will be attributed to the destination account for tax reporting, 
+    // and the funds from charges will be transferred to the destination account. The ID of the resulting 
+    // transfer will be returned on the successful charge’s transfer field.
+    pub destination: &'a str,
+
+    // The amount that will be transferred automatically when a charge succeeds.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub amount: Option<u64>,
 }
 
 impl CheckoutSession {
