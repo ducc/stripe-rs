@@ -113,6 +113,11 @@ pub struct CheckoutSession {
     /// The URL the customer will be directed to after the payment or
     /// subscription creation is successful.
     pub success_url: String,
+    
+    // The URL to the checkout session
+    // https://stripe.com/docs/api/checkout/sessions/object
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub url: Option<String>,
 }
 
 impl Object for CheckoutSession {
